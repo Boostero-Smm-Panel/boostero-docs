@@ -1,3 +1,4 @@
+<img width="1536" height="1024" alt="Image" src="https://github.com/user-attachments/assets/6b89d590-fbe6-4371-be5b-d200e7ff45bc" />
 # Boostero – Social Media Growth Tools & Full API Documentation
 
 Boostero is a modern SMM panel designed for creators, small businesses, agencies, and developers who want reliable tools to improve visibility, engagement, and momentum across major social media platforms. Boostero provides fast order delivery, powerful automation features, and a clean user interface that supports consistent, scalable growth.
