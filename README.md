@@ -36,11 +36,15 @@ Boostero is designed for:
 
 [⬆ Back to top](#-table-of-contents)
 
+---
+
 ## Visual Overview
 
 A visual overview of Boostero’s platform, design, and user experience is available here:
 [visit the portfolio](https://email239f.myportfolio.com/)
 
+
+[⬆ Back to top](#-table-of-contents)
 ---
 
 ## Features
