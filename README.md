@@ -8,6 +8,7 @@ Boostero is a modern SMM platform designed for creators, agencies, and businesse
 
 ## 📚 Table of Contents
 - [Overview](#overview)
+- [Visual overview](#visual)
 - [Features](#features)
 - [API Quick Start](#api-quick-start)
 - [Available API Actions](#available-api-actions)
@@ -34,6 +35,11 @@ Boostero is designed for:
 - Developers automating social media workflows  
 
 [⬆ Back to top](#-table-of-contents)
+
+## Visual Overview
+
+A visual overview of Boostero’s platform, design, and user experience is available here:
+[visit the portfolio](https://email239f.myportfolio.com/)
 
 ---
 
