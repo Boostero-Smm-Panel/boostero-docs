@@ -1,68 +1,64 @@
-📈 Boostero — Social Media Growth Platform & API Documentation
+# Boostero: Social Media Growth Platform & API Documentation
 
-Boostero is a modern SMM platform designed for creators, agencies, and digital businesses that want reliable tools to improve engagement, visibility, and account momentum across major social media platforms. With fast delivery, a clean dashboard, and a powerful API, Boostero makes it easy to automate growth workflows at scale.
+Boostero is a social media marketing panel built for creators, agencies, and digital businesses that want reliable tools to improve engagement, visibility, and account momentum across major social platforms. With fast delivery, a clean dashboard, and a full API, Boostero makes it easy to automate growth workflows at scale.
 
-👉 Official Website: https://boostero.com
+Running since 2020, Boostero has delivered 11.9M+ orders for 209,000+ registered users across 125+ countries, with a 99.7% order completion rate and 1,600+ services across 23+ platforms.
 
-🚀 Platform Overview
+Official website: https://boostero.com
+
+## Platform Overview
 
 Boostero supports engagement and visibility tools for:
-
-Instagram
-
-TikTok
-
-YouTube
-
-Facebook
-
-Twitter/X
-
-Spotify
-
-Telegram
-
-And more
+- Instagram
+- TikTok
+- YouTube
+- Facebook
+- Twitter/X
+- Spotify
+- Telegram
+- And more
 
 Use Boostero to:
+- Improve early engagement
+- Strengthen social proof
+- Boost reach on new posts
+- Automate repetitive SMM tasks
+- Support high-volume client campaigns
 
-Improve early engagement
+## API Quick Start
 
-Strengthen social proof
-
-Boost reach on new posts
-
-Automate repetitive SMM tasks
-
-Support high-volume client campaigns
-
-🔧 API Quick Start
-Base URL
+### Base URL
+```
 https://boostero.com/api/v2
+```
 
-Authentication
-
+### Authentication
 Each request must include:
+- `key`, your API key
+- `action`, the API method you want to call
 
-key — your API key
-
-action — the API method you want to call
-
-Basic cURL Example
+### Basic cURL Example
+```bash
 curl -X POST https://boostero.com/api/v2 \
   -d "key=YOUR_API_KEY" \
   -d "action=balance"
+```
 
-📘 Available API Actions
-Action	Description
-services	Retrieve all available services
-add	Create a new order
-status	Check order status
-balance	Get account balance
-refill	Request a refill
-refill_status	Check refill status
-cancel	Cancel one or more orders
-🧩 PHP Integration Example
+## Available API Actions
+
+| Action          | Description                 |
+|-----------------|-----------------------------|
+| `services`      | Retrieve all available services |
+| `add`           | Create a new order          |
+| `status`        | Check order status          |
+| `balance`       | Get account balance         |
+| `refill`        | Request a refill            |
+| `refill_status` | Check refill status         |
+| `cancel`        | Cancel one or more orders   |
+
+## PHP Integration Example
+
+```php
 $api = new Api();
 $api->api_key = 'YOUR_API_KEY';
 
@@ -71,16 +67,19 @@ $services = $api->services();
 
 // Add order
 $order = $api->order([
-    'service' => 1,
-    'link' => 'http://example.com',
+    'service'  => 1,
+    'link'     => 'http://example.com',
     'quantity' => 100
 ]);
 
 // Check status
 $status = $api->status($order->order);
+```
 
-📦 JSON Response Examples
-Order Response
+## JSON Response Examples
+
+### Order Response
+```json
 {
   "order": 123456,
   "status": "processing",
@@ -89,76 +88,54 @@ Order Response
   "remains": 50,
   "currency": "USD"
 }
+```
 
-Error Response
+### Error Response
+```json
 {
   "error": "Incorrect service ID"
 }
+```
 
-⚠️ Error Handling
-Error	Meaning
-Incorrect API key	Invalid or missing key
-Incorrect service ID	Service does not exist
-Not enough funds	Balance too low
-Invalid link	Link format is incorrect
-Quantity out of range	Less or more than allowed
+## Error Handling
 
-Tip: Always validate service IDs, quantities, and URL formats.
+| Error                 | Meaning                    |
+|-----------------------|----------------------------|
+| Incorrect API key     | Invalid or missing key     |
+| Incorrect service ID  | Service does not exist     |
+| Not enough funds      | Balance too low            |
+| Invalid link          | Link format is incorrect   |
+| Quantity out of range | Less or more than allowed  |
 
-🚦 Rate Limits
+Tip: always validate service IDs, quantities, and URL formats.
 
-Recommended: 1–3 requests per second
+## Rate Limits
+- Recommended: 1 to 3 requests per second.
+- For large workloads, batch status and refill checks where supported.
 
-For large workloads: use multiStatus and multiRefill
+## Security Guidelines
+- Do not expose your API key publicly.
+- Use environment variables (.env) in production.
+- Sanitize user input when generating orders.
+- Avoid logging complete API requests.
 
-🔐 Security Guidelines
+## Common Use Cases
 
-Do not expose your API key publicly.
+The Boostero API is typically used for:
+- Agency dashboards
+- Automated SMM tools
+- Creator growth apps
+- Marketing platforms
+- Cron-based order systems
+- Analytics and reporting tools
 
-Use environment variables (.env) in production.
-
-Sanitize user input when generating orders.
-
-Avoid logging complete API requests.
-
-🛠 Common Use Cases
-
-Boostero API is typically used for:
-
-Agency dashboards
-
-Automated SMM tools
-
-Creator growth apps
-
-Marketing platforms
-
-Cron-based order systems
-
-Analytics and reporting tools
-
-📅 Roadmap
-
-Planned documentation and API enhancements:
-
-Webhook support
-
-Order history endpoint
-
-Service categories
-
-Pagination for large responses
-
-Official SDKs (Node.js, Python, PHP)
-
-💬 Support
+## Support
 
 Need help integrating the API?
+- Telegram: https://t.me/boostero_smm
+- Email: support@boostero.com
+- Support tickets from your Boostero dashboard
 
-👉 Visit: https://boostero.com
+## Summary
 
-👉 Use live chat on the website
-
-🏁 Summary
-
-Boostero provides a powerful, easy-to-use API for automating social media engagement and growth tasks. Use this documentation to quickly integrate orders, track statuses, request refills, and scale your workflows efficiently.
+Boostero provides a reliable, easy-to-use API for automating social media engagement and growth tasks. Use this documentation to integrate orders, track statuses, request refills, and scale your workflows efficiently.
