@@ -1,14 +1,15 @@
-# Boostero – Social Media Growth Tools & API Documentation
+# Boostero: Social Media Growth Tools & API Documentation
 
-Boostero is a modern SMM platform designed for creators, agencies, and businesses that want reliable, scalable engagement tools. With fast delivery, a clean dashboard, and a powerful API, Boostero helps you grow visibility, engagement, and momentum across major social platforms.
+Boostero is a social media marketing panel built for creators, agencies, and businesses that want reliable, scalable engagement tools. With fast delivery, a clean dashboard, and a full API, Boostero helps you grow visibility and engagement across major social platforms.
 
-👉 For full platform info, pricing, and dashboard access, [**visit our website**](https://boostero.com "Boostero – Social Media Growth Platform")
+Running since 2020, Boostero has delivered 11.9M+ orders for 209,000+ registered users across 125+ countries, with a 99.7% order completion rate and 1,600+ services across 23+ platforms.
+
+For full platform info, pricing, and dashboard access, [**visit our website**](https://boostero.com "Boostero Social Media Growth Platform").
 
 ---
 
-## 📚 Table of Contents
+## Table of Contents
 - [Overview](#overview)
-- [Visual overview](#visual)
 - [Features](#features)
 - [API Quick Start](#api-quick-start)
 - [Available API Actions](#available-api-actions)
@@ -18,44 +19,30 @@ Boostero is a modern SMM platform designed for creators, agencies, and businesse
 - [Rate Limits](#rate-limits)
 - [Security Guidelines](#security-guidelines)
 - [Use Cases](#use-cases)
-- [Roadmap](#roadmap)
 - [Support](#support)
 - [Visit Our Website](#visit-our-website)
 
 ---
 
 ## Overview
-Boostero provides reliable engagement boosts across Instagram, TikTok, YouTube, Facebook, Twitter/X, Spotify, Telegram, and more.  
-Its API allows creators and agencies to automate orders, track statuses, request refills, and integrate Boostero into custom dashboards or tools.
+Boostero provides reliable engagement across Instagram, TikTok, YouTube, Facebook, Twitter/X, Spotify, Telegram, and more.
+Its API lets creators and agencies automate orders, track statuses, request refills, and integrate Boostero into custom dashboards or tools.
 
 Boostero is designed for:
-- Creators seeking more visibility  
-- Small businesses building social proof  
-- Agencies managing multiple clients  
-- Developers automating social media workflows  
+- Creators seeking more visibility
+- Small businesses building social proof
+- Agencies managing multiple clients
+- Developers automating social media workflows
 
-[⬆ Back to top](#-table-of-contents)
-
----
-
-## Visual Overview
-
-A visual overview of Boostero’s platform, design, and user experience is available here:
-[visit the portfolio](https://email239f.myportfolio.com/)
-
-
-[⬆ Back to top](#-table-of-contents)
 ---
 
 ## Features
-- ⚡ **Fast Order Processing** – Many services start within minutes  
-- 🔧 **Powerful API** for automating orders and tracking statuses  
-- 🛡 **Safe delivery** systems with refill options  
-- 📊 **Wide service catalog** across all major social platforms  
-- 👨‍💻 **Agency-friendly** workflows and automation support  
-- 📱 **Clean Dashboard UI** for easy use  
-
-[⬆ Back to top](#-table-of-contents)
+- **Fast order processing.** Many services start within minutes.
+- **Full API** for automating orders and tracking statuses.
+- **Safe delivery** with refill on eligible services.
+- **Wide service catalog** across all major social platforms.
+- **Agency-friendly** workflows and automation support.
+- **Clean dashboard** for easy use.
 
 ---
 
@@ -68,8 +55,8 @@ https://boostero.com/api/v2
 
 ### Authentication
 Every request must include:
-- `key` — your API key  
-- `action` — the type of request  
+- `key`, your API key
+- `action`, the type of request
 
 ### Example (cURL)
 ```bash
@@ -78,23 +65,19 @@ curl -X POST https://boostero.com/api/v2 \
   -d "action=balance"
 ```
 
-[⬆ Back to top](#-table-of-contents)
-
 ---
 
 ## Available API Actions
 
-| Action            | Description                                      |
-|------------------|--------------------------------------------------|
-| `services`        | Get all available services                      |
-| `add`             | Create a new order                               |
-| `status`          | Check order status                               |
-| `balance`         | Get account balance                              |
-| `refill`          | Request a refill                                 |
-| `refill_status`   | Check refill status                              |
-| `cancel`          | Cancel one or more orders                        |
-
-[⬆ Back to top](#-table-of-contents)
+| Action          | Description                 |
+|-----------------|-----------------------------|
+| `services`      | Get all available services  |
+| `add`           | Create a new order          |
+| `status`        | Check order status          |
+| `balance`       | Get account balance         |
+| `refill`        | Request a refill            |
+| `refill_status` | Check refill status         |
+| `cancel`        | Cancel one or more orders   |
 
 ---
 
@@ -109,16 +92,14 @@ $services = $api->services();
 
 // Add an order
 $order = $api->order([
-    'service' => 1,
-    'link' => 'http://example.com',
+    'service'  => 1,
+    'link'     => 'http://example.com',
     'quantity' => 100
 ]);
 
 // Check status
 $status = $api->status($order->order);
 ```
-
-[⬆ Back to top](#-table-of-contents)
 
 ---
 
@@ -143,82 +124,56 @@ $status = $api->status($order->order);
 }
 ```
 
-[⬆ Back to top](#-table-of-contents)
-
 ---
 
 ## Error Handling
 
-| Error Message            | Meaning                                      |
-|--------------------------|----------------------------------------------|
-| Incorrect API key        | Invalid or missing key                       |
-| Incorrect service ID     | Service does not exist                       |
-| Not enough funds         | Account balance too low                      |
-| Invalid link             | Link format is incorrect                     |
-| Quantity out of range    | Below minimum or above maximum               |
+| Error Message         | Meaning                    |
+|-----------------------|----------------------------|
+| Incorrect API key     | Invalid or missing key     |
+| Incorrect service ID  | Service does not exist     |
+| Not enough funds      | Balance too low            |
+| Invalid link          | Link format is incorrect   |
+| Quantity out of range | Less or more than allowed  |
 
-[⬆ Back to top](#-table-of-contents)
+Tip: always validate service IDs, quantities, and URL formats.
 
 ---
 
 ## Rate Limits
-- Recommended: **1–3 requests per second**  
-- For high-volume apps: use batching (`multiStatus`, `multiRefill`)  
-
-[⬆ Back to top](#-table-of-contents)
+- Recommended: 1 to 3 requests per second.
+- For large workloads, batch status and refill checks where supported.
 
 ---
 
 ## Security Guidelines
-- Never expose API keys publicly  
-- Use environment variables (`.env`)  
-- Validate all user input  
-- Avoid logging full API requests in production  
-
-[⬆ Back to top](#-table-of-contents)
+- Do not expose your API key publicly.
+- Use environment variables (.env) in production.
+- Sanitize user input when generating orders.
+- Avoid logging complete API requests.
 
 ---
 
 ## Use Cases
-Boostero API is commonly used by:
-
-- 🎯 **Agencies** automating client orders  
-- 🤖 **Automation tools** needing reliable engagement  
-- 📈 **Creators** boosting important posts  
-- 🧩 **SaaS platforms** integrating visibility features  
-- ⏱ **Cron jobs** for recurring orders  
-
-[⬆ Back to top](#-table-of-contents)
-
----
-
-## Roadmap
-Planned enhancements:
-
-- Webhooks  
-- Order history endpoint  
-- Service categories endpoint  
-- Pagination for bulk responses  
-- Official SDKs (Node.js, Python, PHP)  
-
-[⬆ Back to top](#-table-of-contents)
+The Boostero API is typically used for:
+- Agency dashboards
+- Automated SMM tools
+- Creator growth apps
+- Marketing platforms
+- Cron-based order systems
+- Analytics and reporting tools
 
 ---
 
 ## Support
-If you need help integrating the API or have issues:
-
-👉 Visit the support page on our website  
-👉 Use live chat on the Boostero dashboard  
-
-[⬆ Back to top](#-table-of-contents)
+Need help integrating the API?
+- Telegram: [t.me/boostero_smm](https://t.me/boostero_smm)
+- Email: support@boostero.com
+- Support tickets from your Boostero dashboard
 
 ---
 
 ## Visit Our Website
+For full platform info, pricing, and your dashboard, visit [boostero.com](https://boostero.com).
 
-Learn more, explore services, or access your dashboard here:
-
-👉 [**visit our website**](https://boostero.com "Boostero – Social Media Growth Platform")
-
-[⬆ Back to top](#-table-of-contents)
+Boostero focuses on real, lasting engagement, delivered fast and backed by real support since 2020.
