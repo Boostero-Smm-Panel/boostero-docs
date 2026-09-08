@@ -1,62 +1,75 @@
-# Frequently Asked Questions: Boostero
+# Boostero API FAQ
 
-## What is an SMM panel?
+Questions about the API itself. Full reference: <https://boostero.com/api>
 
-A Social Media Marketing (SMM) panel is an online service that provides engagement tools across social platforms, such as followers, likes, views, comments, and more. Panels help creators, brands, and agencies boost visibility and social proof when organic reach is limited.
+## Does the Boostero API support refill?
 
-## How does Boostero work?
+Yes. The API exposes refill for a single order and for a list of orders, each with its
+own status action: `refill`, `refill_status`, and the batch forms of both. Refill is
+only available on services that offer it, and the service list response tells you which
+ones do through the `refill` boolean. A refill request for a service without refill
+returns an error rather than creating one.
 
-Boostero operates as a modern SMM panel. Users select a service, provide the required link or account info, and place an order. Boostero's system processes the request and delivers engagement per the order parameters. The platform automates delivery and maintains quality so your content gets a chance to be seen.
+## Does the Boostero API support webhooks?
 
-## Which services are available?
+No. This is a v2 SMM panel API and it does not push status updates to your server.
+There is no callback URL to register. You read order status by calling the `status`
+action, which accepts up to 100 order IDs in one request, so a polling loop over a
+large number of open orders costs very little. See the polling section of the
+[README](README.md#there-are-no-webhooks-status-is-polled).
 
-Boostero supports a wide range of services across multiple platforms: Instagram, TikTok, YouTube, Facebook, Twitter/X, Telegram, Spotify, and more. Services include followers, likes, views, story views, comments, reposts, and other engagement tools, so you can choose based on your goals.
+If you would rather not build a loop at all, a child panel covers ordering and status
+for your customers without an integration.
 
-## Is Boostero safe to use?
+## What is the rate limit on the Boostero API?
 
-Yes. Boostero uses secure APIs, safe delivery methods, and quality control to ensure services are delivered professionally. We recommend using realistic order quantities and avoiding rapid mass ordering to stay within safe growth behavior.
+There is no published per-key limit and no rate limit headers are returned. Measured on
+4 September 2026, 170 sequential requests at nine per second all returned HTTP 200 with
+no throttling. Concurrency is what degrades: 25 simultaneous requests all succeeded,
+but the slowest took 2.5 seconds. Poll sequentially at about one request per second and
+batch your order IDs.
 
-## Do I need to provide login credentials?
+Those are measurements on a date, not a service commitment.
 
-No. Boostero does not require your account password. All services are delivered via external methods. You only provide public links (for example, a post URL or profile URL) or identifiers as specified in the service instructions.
+## Is there a sandbox or test mode?
 
-## How fast is the delivery?
+There is no separate sandbox environment.
 
-Delivery speed depends on the chosen service and quantity. Many orders start automatically within minutes. Larger orders may take longer depending on volume and platform load.
+Read actions are safe to call as often as you like: `services`, `status` and `balance`
+change nothing. To test ordering, place one real order at the smallest quantity the
+service accepts, which the service list gives you as the `min` value.
 
-## What payment methods are supported?
+## Why did my order succeed with a broken link?
 
-Boostero supports cards, PayPal, cryptocurrency, and Payoneer. Check the current payment options on the website checkout page, as they may vary by region.
+Because the link is not validated. Service ID, quantity and balance are checked, in
+that order; the link is not checked at all. A malformed link is accepted, the balance
+is charged, an order ID is returned, and the order fails later at the provider.
 
-## Is there a refund or refill policy?
+Validate links in your own code before sending them. See
+[the link is not validated](README.md#the-link-is-not-validated).
 
-Yes. If a service drops (for example, followers or likes disappear), Boostero offers a refill on eligible services, and a refund policy applies to orders that fail to start or complete. You can request a refill within the specified refill window. Read the terms during checkout.
+## Why is my error handler missing errors?
 
-## Can I use Boostero for clients (agency or reseller)?
+Most likely it only checks the HTTP status code. Validation errors return **HTTP 200**
+with an `error` key in the body. Authentication failures return 401 and an unknown
+action returns 404, so both checks are needed: status code and body.
 
-Yes. Boostero supports agency and reseller use cases. Through the API and bulk order tools, you can manage multiple accounts or clients, automating orders, statuses, and deliveries.
+## Can I resell Boostero services under my own brand?
 
-## Does using an SMM panel violate social media platform rules?
+Yes, in two ways. Build your own front end on this API and keep Boostero invisible to
+your customers, or open a child panel, which is a ready storefront on your own domain
+with your own prices and no code to write.
 
-Using SMM services may conflict with some platforms' terms of service. While many users rely on panels for growth boosts, we recommend using services responsibly and focusing on organic-quality content alongside any boosts to reduce potential penalties.
+## What is the difference between the API and a child panel?
 
-## How do I place an order using the API?
+The API is a set of endpoints you call from software you build and maintain. A child
+panel is a complete storefront hosted for you, with its own domain, its own prices and
+its own customer accounts.
 
-Use the Boostero API endpoint with your API key. Example with PHP:
+Choose the API when you already have a product to plug orders into, and a child panel
+when the storefront is the product.
 
-```php
-$api = new Api();
-$api->api_key = 'YOUR_API_KEY';
-$order = $api->order([
-    'service'  => 1,
-    'link'     => 'https://yourposturl.com',
-    'quantity' => 100
-]);
-print_r($order);
-```
+## Where do I get support?
 
-See the full API documentation in this repository for details on all available actions (services, status, refill, cancel, balance).
-
-## Where can I get support or help?
-
-For support, reach Boostero on Telegram at https://t.me/boostero_smm, by email at support@boostero.com, or through the support tickets in your dashboard.
+Telegram, email, and support tickets from your dashboard. Contact details are on
+<https://boostero.com>.
