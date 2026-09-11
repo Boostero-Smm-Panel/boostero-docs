@@ -34,12 +34,15 @@ request. The key is the credential, so treat it as one (see [Security](#security
 
 ## There are no webhooks. Status is polled.
 
-This API does not send webhooks. There is no callback URL to register and no push of
-any kind: nothing is sent to your server when an order changes state. Order status is
-read by asking for it.
+No webhooks. Order status is polled, up to 100 IDs per request.
 
-That is a real limitation, and it is stated here rather than left to be discovered.
-It is also cheaper to work around than it first looks, because `status` accepts up to
+This is a property of Perfect Panel, the software this panel runs on, not a Boostero
+limitation: the specification has no webhook, callback or push mechanism in any of its
+ten calls. Measured 2026-09-11 against the Perfect Panel demo API and nine other panels
+running the same script, eight of which serve a byte-identical copy of the same
+response example.
+
+It is cheaper to work around than it first looks, because `status` accepts up to
 **100 order IDs in a single request**:
 
 - Keep a local set of order IDs that are not yet in a final state.
