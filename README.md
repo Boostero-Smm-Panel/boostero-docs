@@ -38,9 +38,9 @@ No webhooks. Order status is polled, up to 100 IDs per request.
 
 This is a property of Perfect Panel, the software this panel runs on, not a Boostero
 limitation: the specification has no webhook, callback or push mechanism in any of its
-ten calls. Measured 2026-09-11 against the Perfect Panel demo API and nine other panels
-running the same script, eight of which serve a byte-identical copy of the same
-response example.
+ten calls. Measured 2026-09-11 against the Perfect Panel demo API and nine other live
+installations of the same software, eight of which serve a byte-identical copy
+of the same response example.
 
 It is cheaper to work around than it first looks, because `status` accepts up to
 **100 order IDs in a single request**:
