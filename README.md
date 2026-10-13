@@ -440,15 +440,15 @@ balance covers the cost, the order is created and the link is taken as given.
 returned an order ID rather than an error.**
 
 This is the single most useful thing to know before writing an integration against this
-endpoint. A typo in a link does not come back as an error you can catch. The link is not
-checked: an order whose link is not a URL at all is accepted and charged. Our test order
-on 4 September 2026 was reported completed by the supplier, and nothing came back to the
-balance.
+endpoint. The link is not checked. A link that is not a URL, or a URL with a typo, comes
+back with an order ID rather than an error, and the balance is charged. Our test order
+with `notaurl` on 4 September 2026 was reported completed by the supplier, and nothing
+came back to the balance.
 
-Validate the link on your side before you call `add`: check that the URL parses, that the
-host matches the platform the service targets, and that it is a profile link where the
-service needs a profile and a post link where it needs a post. Nothing downstream will
-do it for you.
+Validate the link on your side before you call `add`, and plan for the charge, not for a
+refund. Check that the URL parses, that the host matches the platform the service
+targets, and that it is a profile link where the service needs a profile and a post link
+where it needs a post. Nothing downstream will do it for you.
 
 ## Code examples
 
