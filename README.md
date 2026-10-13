@@ -441,8 +441,9 @@ returned an order ID rather than an error.**
 
 This is the single most useful thing to know before writing an integration against this
 endpoint. A typo in a link does not come back as an error you can catch. It comes back
-as an order ID, the balance is charged, and the order fails later at the provider,
-where your code is no longer watching.
+as an order ID and the balance is charged. That one test order could not be cancelled
+("Cancel unavailable. Try again later."), the provider later reported it completed, and
+the charge was not refunded.
 
 Validate links on your side before sending them: check that the URL parses, that the
 host matches the platform the service targets, and that it is a profile link where the
