@@ -43,10 +43,12 @@ service accepts, which the service list gives you as the `min` value.
 
 Because the link is not validated. Service ID, quantity and balance are checked, in
 that order; the link is not checked at all. A malformed link is accepted, the balance
-is charged, an order ID is returned, and the order fails later at the provider.
+is charged, and an order ID is returned rather than an error. Our test order with
+`notaurl` on 4 September 2026 was reported completed by the supplier, and nothing came
+back to the balance.
 
-Validate links in your own code before sending them. See
-[the link is not validated](README.md#the-link-is-not-validated).
+Validate links in your own code before sending them, and plan for the charge, not for a
+refund. See [the link is not validated](README.md#the-link-is-not-validated).
 
 ## Why is my error handler missing errors?
 
